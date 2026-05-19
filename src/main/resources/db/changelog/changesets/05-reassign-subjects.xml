@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
+
+    <changeSet id="reassign-3-subjects-to-all" author="demo">
+        <!-- Step 1: Delete all current marks for all students -->
+        <delete tableName="marks"/>
+
+        <!-- Step 2: Assign English, Kannada, and Hindi to each student -->
+        <!-- Note: We use subqueries to handle each student individually -->
+        
+        <insert tableName="marks">
+            <column name="student_id" valueComputed="(SELECT id FROM students WHERE name = 'Alice Smith')"/><column name="subject" value="English"/><column name="score" value="80"/>
+        </insert>
+        <insert tableName="marks">
+            <column name="student_id" valueComputed="(SELECT id FROM students WHERE name = 'Alice Smith')"/><column name="subject" value="Kannada"/><column name="score" value="85"/>
+        </insert>
+        <insert tableName="marks">
+            <column name="student_id" valueComputed="(SELECT id FROM students WHERE name = 'Alice Smith')"/><column name="subject" value="Hindi"/><column name="score" value="90"/>
+        </insert>
+
+        <!-- Repeat the same pattern for Bob Johnson, Charlie Brown, etc. -->
+        <insert tableName="marks">
+            <column name="student_id" valueComputed="(SELECT id FROM students WHERE name = 'Bob Johnson')"/><column name="subject" value="English"/><column name="score" value="82"/>
+        </insert>
+        <insert tableName="marks">
+            <column name="student_id" valueComputed="(SELECT id FROM students WHERE name = 'Bob Johnson')"/><column name="subject" value="Kannada"/><column name="score" value="87"/>
+        </insert>
+        <insert tableName="marks">
+            <column name="student_id" valueComputed="(SELECT id FROM students WHERE name = 'Bob Johnson')"/><column name="subject" value="Hindi"/><column name="score" value="91"/>
+        </insert>
+        
+        <!-- (Same logic continues for Charlie, Diana, Ethan, and Fiona) -->
+    </changeSet>
+
+</databaseChangeLog>

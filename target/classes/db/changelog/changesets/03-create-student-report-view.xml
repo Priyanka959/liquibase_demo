@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
+
+    <changeSet id="create-student-report-view-v2" author="demo">
+        <createView viewName="v_student_report" replaceIfExists="true">
+            SELECT 
+                s.id AS student_id,
+                s.name AS student_name,
+                m.subject,
+                m.score
+            FROM students s
+            JOIN marks m ON s.id = m.student_id
+        </createView>
+    </changeSet>
+
+</databaseChangeLog>

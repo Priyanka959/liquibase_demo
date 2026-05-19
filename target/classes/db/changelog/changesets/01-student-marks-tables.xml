@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
+
+    <!-- 1. CREATE TABLES -->
+    <changeSet id="create-student-table" author="demo">
+        <createTable tableName="students">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create-marks-table" author="demo">
+        <createTable tableName="marks">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="student_id" type="bigint">
+                <constraints nullable="false" 
+                             foreignKeyName="fk_marks_student" 
+                             referencedTableName="students" 
+                             referencedColumnNames="id"/>
+            </column>
+            <column name="subject" type="varchar(50)"/>
+            <column name="score" type="int"/>
+        </createTable>
+    </changeSet>
+
+    <!-- 2. INSERT DATA -->
+    <changeSet id="insert-initial-data" author="demo">
+        <insert tableName="students">
+            <column name="name" value="John Doe"/>
+        </insert>
+        <insert tableName="marks">
+            <column name="student_id" valueComputed="(SELECT id FROM students WHERE name = 'John Doe')"/>
+            <column name="subject" value="Maths"/>
+            <column name="score" value="85"/>
+        </insert>
+    </changeSet>
+
+    <!-- 3. UPDATE DATA -->
+    <changeSet id="update-student-marks" author="demo">
+        <update tableName="marks">
+            <column name="score" value="90"/>
+            <where>subject = 'Maths' AND student_id = (SELECT id FROM students WHERE name = 'John Doe')</where>
+        </update>
+    </changeSet>
+
+</databaseChangeLog>

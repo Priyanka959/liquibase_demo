@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
+
+    <changeSet id="insert-6-students" author="demo">
+        <insert tableName="students"><column name="name" value="Alice Smith"/></insert>
+        <insert tableName="students"><column name="name" value="Bob Johnson"/></insert>
+        <insert tableName="students"><column name="name" value="Charlie Brown"/></insert>
+        <insert tableName="students"><column name="name" value="Diana Prince"/></insert>
+        <insert tableName="students"><column name="name" value="Ethan Hunt"/></insert>
+        <insert tableName="students"><column name="name" value="Fiona Gallagher"/></insert>
+
+        <insert tableName="marks">
+            <column name="student_id" valueComputed="(SELECT id FROM students WHERE name = 'Alice Smith')"/>
+            <column name="subject" value="Science"/><column name="score" value="92"/>
+        </insert>
+        <insert tableName="marks">
+            <column name="student_id" valueComputed="(SELECT id FROM students WHERE name = 'Bob Johnson')"/>
+            <column name="subject" value="History"/><column name="score" value="78"/>
+        </insert>
+        <insert tableName="marks">
+            <column name="student_id" valueComputed="(SELECT id FROM students WHERE name = 'Charlie Brown')"/>
+            <column name="subject" value="Maths"/><column name="score" value="88"/>
+        </insert>
+        <insert tableName="marks">
+            <column name="student_id" valueComputed="(SELECT id FROM students WHERE name = 'Diana Prince')"/>
+            <column name="subject" value="Art"/><column name="score" value="95"/>
+        </insert>
+        <insert tableName="marks">
+            <column name="student_id" valueComputed="(SELECT id FROM students WHERE name = 'Ethan Hunt')"/>
+            <column name="subject" value="Physical Ed"/><column name="score" value="100"/>
+        </insert>
+        <insert tableName="marks">
+            <column name="student_id" valueComputed="(SELECT id FROM students WHERE name = 'Fiona Gallagher')"/>
+            <column name="subject" value="English"/><column name="score" value="84"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

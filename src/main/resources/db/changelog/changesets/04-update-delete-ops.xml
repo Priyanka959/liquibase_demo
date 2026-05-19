@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
+
+    <!-- 1. UPDATE OPERATION: Update Alice Smith's score in Science -->
+    <changeSet id="update-alice-score" author="demo">
+        <update tableName="marks">
+            <column name="score" value="98"/>
+            <where>subject = 'Science' AND student_id = (SELECT id FROM students WHERE name = 'Alice Smith')</where>
+        </update>
+    </changeSet>
+
+    <!-- 2. DELETE OPERATION: Delete Fiona Gallagher (and her marks via CASCADE or manual) -->
+    <!-- Assuming we want to delete a specific mark record first to be safe -->
+    <changeSet id="delete-fiona-marks" author="demo">
+        <delete tableName="marks">
+            <where>student_id = (SELECT id FROM students WHERE name = 'Fiona Gallagher')</where>
+        </delete>
+        <delete tableName="students">
+            <where>name = 'Fiona Gallagher'</where>
+        </delete>
+    </changeSet>
+
+</databaseChangeLog>
