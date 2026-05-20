@@ -1,10 +1,13 @@
 C:\project\liquibase_demo\src\main\java\com\example\liquibasedemo\repository\MarkRepository.java
+C:\project\liquibase_demo\src\main\java\com\example\liquibasedemo\service\MarkService.java
+C:\project\liquibase_demo\src\main\java\com\example\liquibasedemo\controller\StudentReportController.java
+C:\project\liquibase_demo\src\main\java\com\example\liquibasedemo\service\StudentService.java
+C:\project\liquibase_demo\src\main\java\com\example\liquibasedemo\LiquibaseDemoApplication.java
+C:\project\liquibase_demo\src\main\java\com\example\liquibasedemo\repository\StudentReportRepository.java
+C:\project\liquibase_demo\src\main\java\com\example\liquibasedemo\controller\StudentController.java
 C:\project\liquibase_demo\src\main\java\com\example\liquibasedemo\model\Student.java
 C:\project\liquibase_demo\src\main\java\com\example\liquibasedemo\repository\StudentRepository.java
-C:\project\liquibase_demo\src\main\java\com\example\liquibasedemo\service\MarkService.java
 C:\project\liquibase_demo\src\main\java\com\example\liquibasedemo\controller\MarkController.java
 C:\project\liquibase_demo\src\main\java\com\example\liquibasedemo\service\ReportingTask.java
 C:\project\liquibase_demo\src\main\java\com\example\liquibasedemo\model\Mark.java
-C:\project\liquibase_demo\src\main\java\com\example\liquibasedemo\service\StudentService.java
-C:\project\liquibase_demo\src\main\java\com\example\liquibasedemo\LiquibaseDemoApplication.java
-C:\project\liquibase_demo\src\main\java\com\example\liquibasedemo\controller\StudentController.java
+C:\project\liquibase_demo\src\main\java\com\example\liquibasedemo\model\StudentReport.java

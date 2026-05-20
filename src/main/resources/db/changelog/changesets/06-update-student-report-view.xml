@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
+
+    <changeSet id="drop-and-recreate-student-report-view" author="demo">
+        <dropView viewName="v_student_report"/>
+        <createView viewName="v_student_report">
+            SELECT
+                s.id AS studentid,
+                s.name AS studentname,
+                MAX(CASE WHEN m.subject = 'English' THEN m.score END) AS english,
+                MAX(CASE WHEN m.subject = 'Kannada' THEN m.score END) AS kannada,
+                MAX(CASE WHEN m.subject = 'Hindi' THEN m.score END) AS hindi,
+                COALESCE(SUM(m.score), 0) AS total
+            FROM students s
+            LEFT JOIN marks m ON s.id = m.student_id
+            GROUP BY s.id, s.name
+            ORDER BY s.id
+        </createView>
+    </changeSet>
+
+</databaseChangeLog>
