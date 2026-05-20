@@ -5,8 +5,11 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
     http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
 
-    <changeSet id="drop-and-recreate-student-report-view" author="demo">
+    <changeSet id="drop-student-report-view" author="demo">
         <dropView viewName="v_student_report"/>
+    </changeSet>
+
+    <changeSet id="create-student-report-view" author="demo">
         <createView viewName="v_student_report">
             SELECT
                 s.id AS studentid,

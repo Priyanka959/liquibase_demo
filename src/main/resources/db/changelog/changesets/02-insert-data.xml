@@ -5,16 +5,16 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
     http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
 
-    <changeSet id="insert-6-students-with-all-marks" author="demo">
-        <!-- 1. Insert 6 Students -->
+    <changeSet id="insert-students-batch" author="demo">
         <insert tableName="students"><column name="name" value="Alice Smith"/></insert>
         <insert tableName="students"><column name="name" value="Bob Johnson"/></insert>
         <insert tableName="students"><column name="name" value="Charlie Brown"/></insert>
         <insert tableName="students"><column name="name" value="Diana Prince"/></insert>
         <insert tableName="students"><column name="name" value="Ethan Hunt"/></insert>
         <insert tableName="students"><column name="name" value="Fiona Gallagher"/></insert>
+    </changeSet>
 
-        <!-- 2. Insert Marks for Alice Smith -->
+    <changeSet id="insert-marks-for-all-students" author="demo">
         <insert tableName="marks">
             <column name="student_id" valueComputed="(SELECT id FROM students WHERE name = 'Alice Smith')"/>
             <column name="subject" value="English"/><column name="score" value="85"/>
@@ -28,7 +28,6 @@
             <column name="subject" value="Hindi"/><column name="score" value="88"/>
         </insert>
 
-        <!-- 3. Insert Marks for Bob Johnson -->
         <insert tableName="marks">
             <column name="student_id" valueComputed="(SELECT id FROM students WHERE name = 'Bob Johnson')"/>
             <column name="subject" value="English"/><column name="score" value="78"/>
@@ -42,7 +41,6 @@
             <column name="subject" value="Hindi"/><column name="score" value="75"/>
         </insert>
 
-        <!-- 4. Insert Marks for Charlie Brown -->
         <insert tableName="marks">
             <column name="student_id" valueComputed="(SELECT id FROM students WHERE name = 'Charlie Brown')"/>
             <column name="subject" value="English"/><column name="score" value="92"/>
@@ -56,7 +54,6 @@
             <column name="subject" value="Hindi"/><column name="score" value="95"/>
         </insert>
 
-        <!-- Repeat this pattern for Diana, Ethan, and Fiona -->
         <insert tableName="marks">
             <column name="student_id" valueComputed="(SELECT id FROM students WHERE name = 'Diana Prince')"/>
             <column name="subject" value="English"/><column name="score" value="88"/>

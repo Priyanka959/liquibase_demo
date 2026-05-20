@@ -10,15 +10,17 @@ import java.util.List;
 
 @Service
 @Transactional
-public class StudentService {
+public class StudentService implements IStudentService {
 
   @Autowired
   private StudentRepository studentRepository;
 
+  @Override
   public List<Student> getAllStudents() {
     return studentRepository.findAll(Sort.by("name").ascending());
   }
 
+  @Override
   public Student getStudentById(Long id) {
     return studentRepository.findById(id).orElse(null);
   }

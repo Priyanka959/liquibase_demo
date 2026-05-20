@@ -20,9 +20,9 @@ public class Student {
   @Column(nullable = false, length = 100)
   private String name;
 
-  @Column(name = "created_at", nullable = false, updatable = false)
+  @Column(name = "joining_date", nullable = false, updatable = false)
   @JsonFormat(pattern = "yy-MM-dd")
-  private LocalDateTime createdAt;
+  private LocalDateTime joiningDate;
 
   @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
   @JsonManagedReference

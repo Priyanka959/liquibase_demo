@@ -1,4 +1,5 @@
 package com.example.liquibasedemo.model;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -15,7 +16,7 @@ public class Mark {
 
   @ManyToOne
   @JoinColumn(name = "student_id", nullable = false)
-  @com.fasterxml.jackson.annotation.JsonBackReference
+  @JsonBackReference
   private Student student;
 
   @Column(length = 50)

@@ -21,7 +21,7 @@ public class StudentReport {
   private String studentname;
 
   @JsonFormat(pattern = "yy-MM-dd")
-  private LocalDateTime createdAt;
+  private LocalDateTime joiningDate;
 
   private Integer english;
   private Integer kannada;

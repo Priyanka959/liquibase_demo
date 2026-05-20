@@ -5,11 +5,11 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
     http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
 
-    <changeSet id="reassign-3-subjects-to-all" author="demo">
-        <!-- Step 1: Delete all current marks for all students -->
+    <changeSet id="delete-all-marks" author="demo">
         <delete tableName="marks"/>
+    </changeSet>
 
-        <!-- Step 2: Assign English, Kannada, and Hindi to every student currently in hte table -->
+    <changeSet id="insert-default-subjects-for-all-students" author="demo">
         <sql>
             INSERT INTO marks (student_id, subject, score)
             SELECT s.id, subjects.sub, floor(random() * 40 + 60)::int

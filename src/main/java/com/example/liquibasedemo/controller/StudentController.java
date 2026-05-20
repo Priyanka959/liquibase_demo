@@ -1,7 +1,7 @@
 package com.example.liquibasedemo.controller;
 
 import com.example.liquibasedemo.model.Student;
-import com.example.liquibasedemo.service.StudentService;
+import com.example.liquibasedemo.service.IStudentService;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
@@ -11,7 +11,7 @@ import java.util.List;
 public class StudentController {
 
   @Autowired
-  private StudentService studentService;
+  private IStudentService studentService;
 
   @GetMapping
   public List<Student> getAllStudents() {

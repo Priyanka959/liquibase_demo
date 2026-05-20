@@ -13,12 +13,15 @@
         </update>
     </changeSet>
 
-    <!-- 2. DELETE OPERATION: Delete Fiona Gallagher (and her marks via CASCADE or manual) -->
-    <!-- Assuming we want to delete a specific mark record first to be safe -->
+    <!-- 2. DELETE MARKS FOR FIONA GALLAGHER -->
     <changeSet id="delete-fiona-marks" author="demo">
         <delete tableName="marks">
             <where>student_id = (SELECT id FROM students WHERE name = 'Fiona Gallagher')</where>
         </delete>
+    </changeSet>
+
+    <!-- 3. DELETE FIONA GALLAGHER STUDENT -->
+    <changeSet id="delete-fiona-student" author="demo">
         <delete tableName="students">
             <where>name = 'Fiona Gallagher'</where>
         </delete>

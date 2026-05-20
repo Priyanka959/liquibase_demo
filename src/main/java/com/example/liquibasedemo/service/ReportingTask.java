@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 public class ReportingTask {
 
   @Autowired
-  private StudentService studentService;
+  private IStudentService studentService;
 
   // Runs every 60 seconds (60000 ms)
   @Scheduled(fixedRate = 60000)
