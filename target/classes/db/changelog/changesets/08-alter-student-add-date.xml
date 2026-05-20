@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
+
+    <changeSet id="drop-view-alter-table-recreate-view" author="demo">
+        <!-- 1. Drop existing view -->
+        <dropView viewName="v_student_report"/>
+
+        <!-- 2. Alter students table to add created_at column -->
+        <addColumn tableName="students">
+            <column name="created_at" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+
+        <!-- 3. Recreate view with the new column if needed or just restore the pivot logic -->
+        <createView viewName="v_student_report">
+            SELECT
+                s.id AS studentid,
+                s.name AS studentname,
+                s.created_at,
+                MAX(CASE WHEN m.subject = 'English' THEN m.score END) AS english,
+                MAX(CASE WHEN m.subject = 'Kannada' THEN m.score END) AS kannada,
+                MAX(CASE WHEN m.subject = 'Hindi' THEN m.score END) AS hindi,
+                COALESCE(SUM(m.score), 0) AS total
+            FROM students s
+            LEFT JOIN marks m ON s.id = m.student_id
+            GROUP BY s.id, s.name, s.created_at
+            ORDER BY s.id
+        </createView>
+    </changeSet>
+
+</databaseChangeLog>

@@ -1,10 +1,17 @@
 package com.example.liquibasedemo.model;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.util.List;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "students")
+@Getter
+@Setter
 public class Student {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,31 +20,11 @@ public class Student {
   @Column(nullable = false, length = 100)
   private String name;
 
+  @Column(name = "created_at", nullable = false, updatable = false)
+  @JsonFormat(pattern = "yy-MM-dd")
+  private LocalDateTime createdAt;
+
   @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
-  @com.fasterxml.jackson.annotation.JsonManagedReference 
+  @JsonManagedReference
   private List<Mark> marks;
-
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public List<Mark> getMarks() {
-    return marks;
-  }
-
-  public void setMarks(List<Mark> marks) {
-    this.marks = marks;
-  }
 }

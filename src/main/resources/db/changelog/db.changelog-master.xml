@@ -12,5 +12,6 @@
     <include file="db/changelog/changesets/04-update-delete-ops.xml"/>
     <include file="db/changelog/changesets/05-reassign-subjects.xml"/>
     <include file="db/changelog/changesets/06-update-student-report-view.xml"/>
+    <include file="db/changelog/changesets/08-alter-student-add-date.xml"/>
 
 </databaseChangeLog>

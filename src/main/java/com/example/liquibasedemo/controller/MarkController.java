@@ -1,7 +1,8 @@
 package com.example.liquibasedemo.controller;
 
 import com.example.liquibasedemo.model.Mark;
-import com.example.liquibasedemo.service.MarkService;
+import com.example.liquibasedemo.service.IMarksService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -9,11 +10,8 @@ import java.util.List;
 @RequestMapping("/api/marks")
 public class MarkController {
 
-  private final MarkService markService;
-
-  public MarkController(MarkService markService) {
-    this.markService = markService;
-  }
+  @Autowired
+  private IMarksService markService;
 
   @GetMapping
   public List<Mark> getAllMarks() {

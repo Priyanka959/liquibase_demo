@@ -4,21 +4,19 @@ import com.example.liquibasedemo.model.Student;
 import com.example.liquibasedemo.repository.StudentRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import java.util.List;
-
 
 @Service
 @Transactional
 public class StudentService {
 
-  private final StudentRepository studentRepository;
-
-  public StudentService(StudentRepository studentRepository) {
-    this.studentRepository = studentRepository;
-  }
+  @Autowired
+  private StudentRepository studentRepository;
 
   public List<Student> getAllStudents() {
-    return studentRepository.findAll(org.springframework.data.domain.Sort.by("name").ascending());
+    return studentRepository.findAll(Sort.by("name").ascending());
   }
 
   public Student getStudentById(Long id) {

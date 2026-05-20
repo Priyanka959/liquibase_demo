@@ -3,18 +3,15 @@ package com.example.liquibasedemo.controller;
 import com.example.liquibasedemo.model.Student;
 import com.example.liquibasedemo.service.StudentService;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
-
 
 @RestController
 @RequestMapping("/api/students")
 public class StudentController {
 
-  private final StudentService studentService;
-
-  public StudentController(StudentService studentService) {
-    this.studentService = studentService;
-  }
+  @Autowired
+  private StudentService studentService;
 
   @GetMapping
   public List<Student> getAllStudents() {

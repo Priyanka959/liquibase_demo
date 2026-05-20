@@ -1,9 +1,13 @@
 package com.example.liquibasedemo.model;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "marks")
+@Getter
+@Setter
 public class Mark {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,36 +22,4 @@ public class Mark {
   private String subject;
 
   private Integer score;
-
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  public Student getStudent() {
-    return student;
-  }
-
-  public void setStudent(Student student) {
-    this.student = student;
-  }
-
-  public String getSubject() {
-    return subject;
-  }
-
-  public void setSubject(String subject) {
-    this.subject = subject;
-  }
-
-  public Integer getScore() {
-    return score;
-  }
-
-  public void setScore(Integer score) {
-    this.score = score;
-  }
 }

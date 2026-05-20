@@ -5,6 +5,7 @@ import com.example.liquibasedemo.repository.StudentReportRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
@@ -12,11 +13,8 @@ import java.util.List;
 @RequestMapping("/api/reports")
 public class StudentReportController {
 
-  private final StudentReportRepository studentReportRepository;
-
-  public StudentReportController(StudentReportRepository studentReportRepository) {
-    this.studentReportRepository = studentReportRepository;
-  }
+  @Autowired
+  private StudentReportRepository studentReportRepository;
 
   @GetMapping("/students")
   public List<StudentReport> getStudentReport() {

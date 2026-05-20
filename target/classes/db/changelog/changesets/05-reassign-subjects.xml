@@ -9,31 +9,17 @@
         <!-- Step 1: Delete all current marks for all students -->
         <delete tableName="marks"/>
 
-        <!-- Step 2: Assign English, Kannada, and Hindi to each student -->
-        <!-- Note: We use subqueries to handle each student individually -->
-        
-        <insert tableName="marks">
-            <column name="student_id" valueComputed="(SELECT id FROM students WHERE name = 'Alice Smith')"/><column name="subject" value="English"/><column name="score" value="80"/>
-        </insert>
-        <insert tableName="marks">
-            <column name="student_id" valueComputed="(SELECT id FROM students WHERE name = 'Alice Smith')"/><column name="subject" value="Kannada"/><column name="score" value="85"/>
-        </insert>
-        <insert tableName="marks">
-            <column name="student_id" valueComputed="(SELECT id FROM students WHERE name = 'Alice Smith')"/><column name="subject" value="Hindi"/><column name="score" value="90"/>
-        </insert>
-
-        <!-- Repeat the same pattern for Bob Johnson, Charlie Brown, etc. -->
-        <insert tableName="marks">
-            <column name="student_id" valueComputed="(SELECT id FROM students WHERE name = 'Bob Johnson')"/><column name="subject" value="English"/><column name="score" value="82"/>
-        </insert>
-        <insert tableName="marks">
-            <column name="student_id" valueComputed="(SELECT id FROM students WHERE name = 'Bob Johnson')"/><column name="subject" value="Kannada"/><column name="score" value="87"/>
-        </insert>
-        <insert tableName="marks">
-            <column name="student_id" valueComputed="(SELECT id FROM students WHERE name = 'Bob Johnson')"/><column name="subject" value="Hindi"/><column name="score" value="91"/>
-        </insert>
-        
-        <!-- (Same logic continues for Charlie, Diana, Ethan, and Fiona) -->
+        <!-- Step 2: Assign English, Kannada, and Hindi to every student currently in hte table -->
+        <sql>
+            INSERT INTO marks (student_id, subject, score)
+            SELECT s.id, subjects.sub, floor(random() * 40 + 60)::int
+            FROM students s
+            CROSS JOIN (
+                SELECT 'English' AS sub 
+                UNION ALL SELECT 'Kannada' 
+                UNION ALL SELECT 'Hindi'
+            ) subjects;
+        </sql>
     </changeSet>
 
 </databaseChangeLog>

@@ -7,6 +7,7 @@ C:\project\liquibase_demo\src\main\java\com\example\liquibasedemo\repository\Stu
 C:\project\liquibase_demo\src\main\java\com\example\liquibasedemo\controller\StudentController.java
 C:\project\liquibase_demo\src\main\java\com\example\liquibasedemo\model\Student.java
 C:\project\liquibase_demo\src\main\java\com\example\liquibasedemo\repository\StudentRepository.java
+C:\project\liquibase_demo\src\main\java\com\example\liquibasedemo\service\IMarksService.java
 C:\project\liquibase_demo\src\main\java\com\example\liquibasedemo\controller\MarkController.java
 C:\project\liquibase_demo\src\main\java\com\example\liquibasedemo\service\ReportingTask.java
 C:\project\liquibase_demo\src\main\java\com\example\liquibasedemo\model\Mark.java
